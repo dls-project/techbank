@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class techbank extends Model
+class MService extends Model
 {
-    //
+    protected $table = 'm_service';
 }
