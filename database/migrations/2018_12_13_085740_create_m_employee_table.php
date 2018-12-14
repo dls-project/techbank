@@ -18,6 +18,7 @@ class CreateMEmployeeTable extends Migration {
 			$table->string('emp_name', 100)->comment('社員氏名');
 			$table->char('sex', 1)->comment('性別');
 			$table->integer('service_code')->unsigned()->comment('サービスコード');
+			$table->timestamps();
 		});
 	}
 
