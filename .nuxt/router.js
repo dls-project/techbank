@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { interopDefault } from './utils'
 
-const _10f672fc = () => interopDefault(import('..\\nuxtjs\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
+const _7f6ff2fb = () => interopDefault(import('../nuxtjs/pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 Vue.use(Router)
 
@@ -63,7 +63,7 @@ export function createRouter() {
 
     routes: [{
       path: "/",
-      component: _10f672fc,
+      component: _7f6ff2fb,
       name: "index"
     }],
 
