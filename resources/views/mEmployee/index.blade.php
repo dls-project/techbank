@@ -21,7 +21,10 @@
         <td>{{$employee->emp_name}}</td>
         <td>{{$employee->sex}}</td>
         <td>{{$employee->service_code}}</td>
-        <td><a href="/m_employee/{{$employee->emp_id}}">詳細</a></td>
+        <td>
+            <a href="/m_employee/{{$employee->emp_id}}">詳細</a>
+            <a href="/m_employee/{{$employee->emp_id}}/edit">編集</a>
+        </td>
     </tr>
   @endforeach
 </table>

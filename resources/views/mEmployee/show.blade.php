@@ -10,4 +10,5 @@
     <p>{{$employee->service_code}}</p>
     <br><br>
     <a href="/m_employee">一覧に戻る</a>
+    <a href="/m_employee/{{$employee->emp_id}}/edit">編集</a>
 @endsection
