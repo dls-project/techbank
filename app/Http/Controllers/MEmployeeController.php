@@ -97,6 +97,8 @@ class MEmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee = MEmployee::find($id);
+        $employee->delete();
+        return redirect('/m_employee/');
     }
 }

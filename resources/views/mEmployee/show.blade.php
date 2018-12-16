@@ -11,4 +11,9 @@
     <br><br>
     <a href="/m_employee">一覧に戻る</a>
     <a href="/m_employee/{{$employee->emp_id}}/edit">編集</a>
+    <form action="/m_employee/{{$employee->emp_id}}" method="post">
+        @csrf
+        @method('delete')
+        <input type="submit" name="" value="削除">
+    </form>
 @endsection

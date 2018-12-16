@@ -5,7 +5,6 @@
 @section('content')
 <h1>編集</h1>
 <form action="/m_employee/{{$employee->emp_id}}" method="post">
-    <!-- {{ csrf_field() }} -->
     @csrf
     <div>
         <label for="empId">社員番号</label>
