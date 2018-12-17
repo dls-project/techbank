@@ -1,22 +1,19 @@
 <template>
   <section class="container">
-    <div>
+    <div class="left">
       <app-logo/>
       <h1 class="title">
-        techbank
+        <span class="T">T</span>ech<span class="B">B</span>ank
       </h1>
       <h2 class="subtitle">
-        Nuxt.js project
+        社員スキル管理システム
       </h2>
+    </div>
+    <div class="right">
       <div class="links">
         <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
+          href="/employees"
+          class="button--green">社員マスタ</a>
       </div>
     </div>
   </section>
@@ -45,14 +42,14 @@ export default {
   font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
   display: block;
   font-weight: 300;
-  font-size: 100px;
+  font-size: 50px;
   color: #35495e;
   letter-spacing: 1px;
 }
 
 .subtitle {
   font-weight: 300;
-  font-size: 42px;
+  font-size: 20px;
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
@@ -60,6 +57,29 @@ export default {
 
 .links {
   padding-top: 15px;
+}
+
+.T {
+  color: rgb(93, 93, 250);
+  font-weight: bold;
+}
+
+.B {
+  color: rgb(55, 226, 55);
+  font-weight: bold;
+}
+
+.left {
+  width: 50%;
+  float: left;
+  border-right: 1px solid gainsboro;
+}
+.right {
+  width: 50%;
+  float: right;
+}
+.login-form {
+  padding: 20px;
 }
 </style>
 
