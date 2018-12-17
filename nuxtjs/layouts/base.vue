@@ -1,8 +1,5 @@
 <template>
   <div>
-    <nav class="top-nav">
-      <h1 id="logo">TeckBank</h1>
-    </nav>
     <nuxt/>
   </div>
 </template>
@@ -24,15 +21,33 @@ html {
   margin: 0;
 }
 
-.top-nav {
-  height: 50px;
-  background:#3B8070;
-  color: white;
-  padding: 0 1rem;
+.button--green {
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #3b8070;
+  color: #3b8070;
+  text-decoration: none;
+  padding: 10px 30px;
 }
-#logo {
-  font-size: 1.5rem;
-  line-height: 50px;
+
+.button--green:hover {
+  color: #fff;
+  background-color: #3b8070;
+}
+
+.button--grey {
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #35495e;
+  color: #35495e;
+  text-decoration: none;
+  padding: 10px 30px;
+  margin-left: 15px;
+}
+
+.button--grey:hover {
+  color: #fff;
+  background-color: #35495e;
 }
 </style>
 

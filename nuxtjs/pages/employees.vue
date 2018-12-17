@@ -1,6 +1,5 @@
 <template>
   <section class="container">
-    <h2 class="title">社員マスタ</h2>
     <b-row>
       <b-col md="6" class="my-1">
         <b-form-group>
@@ -22,11 +21,9 @@
       @filtered="onFiltered"
       >
       <template slot="action" slot-scope="data">
-        <b-button-group size="sm">
-          <b-button variant="success">詳細</b-button>
-          <b-button variant="success">編集</b-button>
-          <b-button variant="success">削除</b-button>
-        </b-button-group>
+        <b-button size="sm" variant="success"><font-awesome-icon icon="file-alt"/></b-button>
+        <b-button size="sm" variant="primary"><font-awesome-icon icon="edit"/></b-button>
+        <b-button size="sm" variant="danger"><font-awesome-icon icon="trash-alt"/></b-button>
       </template>
     </b-table>
     <b-row>
@@ -79,6 +76,9 @@ export default {
     onFiltered (filteredItems) {
       this.totalRows = filteredItems.length
       this.currentPage = 1
+    },
+    create() {
+      alert('新規作成')
     }
   },
   mounted() {
