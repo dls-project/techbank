@@ -7,6 +7,7 @@ module.exports = {
   srcDir: "./nuxtjs",
   modules: [
     '@nuxtjs/proxy',
+    'bootstrap-vue/nuxt',
   ],
   proxy: {
     '/api': 'http://localhost:8000'
