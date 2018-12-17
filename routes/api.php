@@ -16,6 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware' => ['api']], function(){
+    Route::resource('m_employee', 'Api\MEmployeeController', ['except' => ['create', 'edit']]);
+});
+
 Route::get('/status', function () {
     return [ "status" => "OK" ];
 });
