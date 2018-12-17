@@ -9,11 +9,25 @@ module.exports = {
     '@nuxtjs/proxy',
     '@nuxtjs/axios',
     'bootstrap-vue/nuxt',
+    'nuxt-fontawesome'
   ],
+
   axios: {
   },
+
   proxy: {
     '/api': 'http://localhost:8000'
+  },
+  /*
+  ** fontawesome
+  */
+  fontawesome: {
+    imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas']
+      }
+    ]
   },
   /*
   ** Headers of the page
