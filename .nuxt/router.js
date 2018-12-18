@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 
 const _04ab2fb5 = () => interopDefault(import('..\\nuxtjs\\pages\\employees.vue' /* webpackChunkName: "pages_employees" */))
+const _7da72cce = () => interopDefault(import('..\\nuxtjs\\pages\\login.vue' /* webpackChunkName: "pages_login" */))
 const _10f672fc = () => interopDefault(import('..\\nuxtjs\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 Vue.use(Router)
@@ -66,6 +67,10 @@ export function createRouter() {
       path: "/employees",
       component: _04ab2fb5,
       name: "employees"
+    }, {
+      path: "/login",
+      component: _7da72cce,
+      name: "login"
     }, {
       path: "/",
       component: _10f672fc,

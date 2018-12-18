@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <b-container fluid>
     <b-row>
       <b-col md="6" class="my-1">
         <b-form-group>
@@ -17,6 +17,9 @@
       :fields="fields"
       :current-page="currentPage"
       :per-page="perPage"
+      show-empty=true
+      empty-text="表示するデータがありません"
+      empty-filtered-text="該当するデータがありません"
       :filter="filter"
       @filtered="onFiltered"
       >
@@ -31,7 +34,7 @@
         <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0" />
       </b-col>
     </b-row>
-  </section>
+  </b-container>
 </template>
 
 <script>

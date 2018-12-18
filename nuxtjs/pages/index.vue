@@ -1,21 +1,16 @@
 <template>
-  <section class="container">
-    <div class="left">
-      <app-logo/>
-      <h1 class="title">
-        <span class="T">T</span>ech<span class="B">B</span>ank
-      </h1>
-      <h2 class="subtitle">
-        社員スキル管理システム
-      </h2>
-    </div>
-    <div class="right">
-      <div class="links">
-        <a
-          href="/employees"
-          class="button--green">社員マスタ</a>
-      </div>
-    </div>
+  <section >
+    <b-list-group>
+      <b-list-group-item v-for="item in links" :key="item.id">
+        <b-link 
+          variant="primary"
+          :to="item.link"
+          :disabled="item.disabled">
+          {{item.title}}
+        </b-link>{{item.link}}
+        <b-progress :value="item.sts" :max="max" show-progress animated></b-progress>
+      </b-list-group-item>
+    </b-list-group>
   </section>
 </template>
 
@@ -25,61 +20,25 @@ import AppLogo from '~/components/AppLogo.vue'
 export default {
   components: {
     AppLogo
+  },
+  data() {
+    return {
+      links:[
+              {id:0, title:'Layout', link:'/', disabled:true, sts:30},
+              {id:1, title:'認証機能', link:'/login', disabled:false, sts:40},
+              {id:2, title:'社員マスタ', link:'/employees', disabled:false, sts:50},
+              {id:3, title:'スキルマスタ', link:'＃', disabled:true, sts:10},
+              {id:4, title:'サービスマスタ', link:'＃', disabled:true, sts:10},
+              {id:5, title:'資格マスタ', link:'＃', disabled:true, sts:0},
+              {id:6, title:'保有スキル', link:'＃', disabled:true, sts:10}
+            ],
+      max:100
+    }
   }
 }
 </script>
 
-<style>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+<style scoped>
 
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 50px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 20px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-
-.T {
-  color: rgb(93, 93, 250);
-  font-weight: bold;
-}
-
-.B {
-  color: rgb(55, 226, 55);
-  font-weight: bold;
-}
-
-.left {
-  width: 50%;
-  float: left;
-  border-right: 1px solid gainsboro;
-}
-.right {
-  width: 50%;
-  float: right;
-}
-.login-form {
-  padding: 20px;
-}
 </style>
 

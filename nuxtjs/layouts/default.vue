@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="top-nav">
-      <h1 id="logo">TeckBank</h1>
+      <b-link id="logo" to="/">TechBank</b-link>
     </nav>
     <nuxt/>
   </div>
@@ -26,13 +26,16 @@ html {
 
 .top-nav {
   height: 50px;
+  display: flex;
+  align-items: center;
   background:#3B8070;
   color: white;
   padding: 0 1rem;
 }
 #logo {
   font-size: 1.5rem;
-  line-height: 50px;
+  color: white;
+  text-decoration: none;
 }
 </style>
 
