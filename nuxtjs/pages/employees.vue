@@ -1,15 +1,16 @@
 <template>
-  <b-container fluid>
+  <div>
     <b-row>
-      <b-col md="6" class="my-1">
-        <b-form-group>
-          <b-input-group>
-            <b-form-input v-model="filter" placeholder="検索" />
-            <b-input-group-append>
-              <b-btn variant="primary" :disabled="!filter" @click="filter = ''">クリア</b-btn>
-            </b-input-group-append>
-          </b-input-group>
-        </b-form-group>
+      <b-col>
+        <!-- <b-input-group>
+          <b-form-input v-model="filter" placeholder="検索" />
+          <b-input-group-append>
+            <b-btn variant="primary" :disabled="!filter" @click="filter = ''">クリア</b-btn>
+          </b-input-group-append>
+        </b-input-group> -->
+      </b-col>
+      <b-col>
+        <!-- <b-button variant="primary" @click="create"><font-awesome-icon icon="plus" class="mr-2"/>新規作成</b-button> -->
       </b-col>
     </b-row>
     <b-table striped bordered small hover 
@@ -17,24 +18,26 @@
       :fields="fields"
       :current-page="currentPage"
       :per-page="perPage"
-      show-empty=true
+      :show-empty="showEmpty"
       empty-text="表示するデータがありません"
       empty-filtered-text="該当するデータがありません"
       :filter="filter"
       @filtered="onFiltered"
       >
       <template slot="action" slot-scope="data">
-        <b-button size="sm" variant="success"><font-awesome-icon icon="file-alt"/></b-button>
-        <b-button size="sm" variant="primary"><font-awesome-icon icon="edit"/></b-button>
-        <b-button size="sm" variant="danger"><font-awesome-icon icon="trash-alt"/></b-button>
+        <div class="action">
+        <b-link><font-awesome-icon icon="file"/></b-link>
+        <b-link><font-awesome-icon icon="edit"/></b-link>
+        <b-link><font-awesome-icon icon="trash"/></b-link>
+        </div>
       </template>
     </b-table>
-    <b-row>
+    <!-- <b-row>
       <b-col md="6" class="my-1">
         <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0" />
       </b-col>
-    </b-row>
-  </b-container>
+    </b-row> -->
+  </div>
 </template>
 
 <script>
@@ -67,6 +70,7 @@ export default {
       items:[],
       currentPage: 1,
       perPage: 10,
+      showEmpty: true,
       filter: null,
     }
   },
@@ -94,6 +98,9 @@ export default {
 </script>
 
 <style>
-
+.action{
+  padding: 0;
+  background: gray;
+}
 </style>
 
