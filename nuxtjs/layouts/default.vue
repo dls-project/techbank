@@ -101,7 +101,7 @@ html, {
   height: calc(100vh - 50px);
 }
 .wrapper > * {
-  padding: 10px;
+  /* padding: 10px; */
 }
 .menu-bar {
   order: 0;
