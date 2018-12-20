@@ -76,11 +76,12 @@ export default {
 
                 //取得したアクセストークンをヘッダーに入れる
                 const headers = this.getHeaders(response.data.access_token)
-                axios.defaults.headers.common['Authorization'] = headers.Authorization;
+                axios.defaults.headers.common['Authorization'] = headers.Authorization
                 console.log(headers)
-            })
+                })
             .catch(error => {
                 alert('ログインに失敗しました')
+
             })
         }
     }

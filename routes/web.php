@@ -19,3 +19,7 @@ Route::resource('m_employee', 'MEmployeeController');
 Route::resource('m_service', 'MServiceController');
 Route::resource('m_skill', 'MSkillController');
 Route::resource('t_emp_skill', 'TEmpSkillController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
