@@ -67,20 +67,20 @@ export default {
             const postData = {
                 grant_type: 'password',
                 client_id: '2',
-                client_secret: 'シークレットキー',
+                client_secret: 'GRlomNcC8HqmQglvR3aWJNzCl0wk2UeazC5OCwLK',
                 username: this.username,
                 password: this.password,
             }
-            console.log(postData)
-            axios.post('http://localhost:8000/api/oauth/token', postData)
+            axios.post('http://localhost:8000/oauth/token', postData)
             .then(response => {
 
                 //取得したアクセストークンをヘッダーに入れる
                 const headers = this.getHeaders(response.data.access_token)
                 axios.defaults.headers.common['Authorization'] = headers.Authorization;
+                console.log(headers)
             })
             .catch(error => {
-                console.log('ログインに失敗しました')
+                alert('ログインに失敗しました')
             })
         }
     }
