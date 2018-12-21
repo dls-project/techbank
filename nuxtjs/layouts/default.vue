@@ -106,7 +106,7 @@ html, {
 .menu-bar {
   order: 0;
   width: 250px;
-  /* padding: 10px; */
+  padding: 15px;
   background: #f5f5f5;
   border-right:1px solid gainsboro;
 }

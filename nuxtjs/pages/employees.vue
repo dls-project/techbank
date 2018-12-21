@@ -1,7 +1,7 @@
 <template>
   <div>
-  <b-container fluid class="my-3">
-    <b-row class="mb-3">
+  <b-container fluid>
+    <b-row class="my-3">
       <b-col>
         <b-input-group :prepend="totalRows+'件'">
           <b-input-group-append>
@@ -42,11 +42,14 @@
       </template>
     </b-table>
     <b-row>
-      <!-- <b-col>
-        {{totalRows}}件
-      </b-col> -->
       <b-col>
-        <b-pagination align="center" :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0" />
+        <b-pagination 
+          align="center" 
+          limit=10
+          :total-rows="totalRows"
+          :per-page="perPage"
+          v-model="currentPage"
+           />
       </b-col>
     </b-row>
     </b-container>
@@ -57,10 +60,13 @@
       <b-form-group horizontal label="社員氏名">
         <b-form-input type="text"/>
       </b-form-group>
-      <b-form-group label="性別">
-        <b-form-radio-group v-model="radioSelected"
-                            :options="sex"
-                            name="sex" />
+      <b-form-group horizontal label="性別">
+        <b-form-radio-group
+          v-model="radioSelected"
+          :options="sex"
+          buttons
+          button-variant="outline-primary"
+          name="sex" />
       </b-form-group>
       <b-form-group horizontal label="サービス">
         <b-form-select v-model="serviceCode" :options="options"/>
