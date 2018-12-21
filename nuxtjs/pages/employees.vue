@@ -1,9 +1,11 @@
 <template>
   <div>
-  <b-container fluid>
-    <b-row class="my-3" align-h="between">
+  <b-container fluid class="my-3">
+    <b-row class="mb-3">
       <b-col>
-        <b-input-group>
+        <b-input-group :prepend="totalRows+'件'">
+          <b-input-group-append>
+          </b-input-group-append>
           <b-form-input v-model="filter" placeholder="検索" />
           <b-input-group-append>
             <b-btn class="float-right" variant="primary" :disabled="!filter" @click="filter = ''">クリア</b-btn>
@@ -11,11 +13,11 @@
         </b-input-group>
       </b-col>
       <b-col>
-        <b-button variant="primary" @click="create"><font-awesome-icon icon="plus" class="mr-2"/>新規作成</b-button>
+        <b-button class="float-right" variant="primary" v-b-modal.addForm><font-awesome-icon icon="plus" class="mr-2"/>新規作成</b-button>
       </b-col>
     </b-row>
- 
     <b-table striped bordered small hover
+      class="custom-table"
       :items="items"
       :fields="fields"
       :current-page="currentPage"
@@ -24,6 +26,7 @@
       empty-text="表示するデータがありません"
       empty-filtered-text="該当するデータがありません"
       :filter="filter"
+      tbody-class="custom-tbody"
       tbody-tr-class="custom-tr"
       tbody-td-class="custom-td"
       @filtered="onFiltered"
@@ -33,17 +36,39 @@
           <b-button-group size="sm">
             <b-button variant="info"><font-awesome-icon icon="file" class="mr-1"/>詳細</b-button>
             <b-button variant="success"><font-awesome-icon icon="edit" class="mr-1"/>編集</b-button>
-            <b-button variant="danger"><font-awesome-icon icon="trash" class="mr-1"/>削除</b-button>
+            <b-button v-b-modal.delete variant="danger"><font-awesome-icon icon="trash" class="mr-1"/>削除</b-button>
           </b-button-group>
         </div>
       </template>
     </b-table>
     <b-row>
+      <!-- <b-col>
+        {{totalRows}}件
+      </b-col> -->
       <b-col>
-        <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0" />
+        <b-pagination align="center" :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0" />
       </b-col>
     </b-row>
     </b-container>
+    <b-modal id="addForm" title="新規作成" centered >
+      <b-form-group horizontal label="社員番号" >
+        <b-form-input type="text"/>
+      </b-form-group>
+      <b-form-group horizontal label="社員氏名">
+        <b-form-input type="text"/>
+      </b-form-group>
+      <b-form-group label="性別">
+        <b-form-radio-group v-model="radioSelected"
+                            :options="sex"
+                            name="sex" />
+      </b-form-group>
+      <b-form-group horizontal label="サービス">
+        <b-form-select v-model="serviceCode" :options="options"/>
+      </b-form-group>
+    </b-modal>
+        <b-modal id="delete" title="削除" centered >
+        データを削除してよろしいですか
+    </b-modal>
   </div>
 </template>
 
@@ -77,15 +102,26 @@ export default {
       },
       items:[],
       currentPage: 1,
-      perPage: 10,
+      perPage: 20,
       showEmpty: true,
       filter: null,
+      totalRows: 0,
+
+      //新規作成フォーム
+      radioSelected: null,
+      sex: ['男', '女'],
+      serviceCode: null,
+      options: [
+        { value: null, text: '-' },
+        { value: '1', text: '開発' },
+        { value: '2', text: 'マーケティング' }
+      ]
     }
   },
   computed: {
-    totalRows() {
-      return this.items.length 
-    }
+    // totalRows() {
+    //   return this.items.length
+    // }
   },
   methods: {
     onFiltered (filteredItems) {
@@ -112,6 +148,17 @@ export default {
 }
 .table {
   font-size: 0.9rem;
+}
+
+.custom-table {
+
+}
+
+.custom-table .custom-tbody {
+
+}
+.custom-table .custom-tbody {
+
 }
 .custom-tr:hover .action{
   visibility:visible;

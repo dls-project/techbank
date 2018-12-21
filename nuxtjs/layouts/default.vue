@@ -113,6 +113,6 @@ html, {
 .main {
   order: 1;
   flex-grow: 1;
-  /* background: gray; */
+  overflow-y: auto;
 }
 </style>
