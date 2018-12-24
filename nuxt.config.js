@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 module.exports = {
+  mode: 'spa',
   env: {
     FRONT_API_URL: process.env.FRONT_API_URL,
     PASSPORT_PASSWORD_GRANT_ID: process.env.PASSPORT_PASSWORD_GRANT_ID,
@@ -15,6 +16,47 @@ module.exports = {
     'bootstrap-vue/nuxt',
     'nuxt-fontawesome'
   ],
+
+  router: {
+    middleware: ['auth']
+  },
+
+  axios: {
+    baseURL: process.env.LARAVEL_ENDPOINT
+  },
+
+  auth: {
+    redirect: {
+      login: "/login",
+      logout: "/",
+      callback: "/login",                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+      user: "/"
+    },
+    strategies: {
+      password_grant_custom: {
+        _scheme: "~/auth/schemes/PassportPasswordScheme.js",
+        client_id: process.env.PASSPORT_PASSWORD_GRANT_ID,
+        client_secret: process.env.PASSPORT_PASSWORD_GRANT_SECRET,
+        endpoints: {
+          login: {
+            url: "/oauth/token",
+            method: "post",
+            propertyName: "access_token"
+          },
+          logout: false,
+          user: {
+            url: "api/auth/me"
+          }
+        }
+      },
+      'laravel.passport': {
+        url: process.env.LARAVEL_ENDPOINT,
+        client_id: process.env.PASSPORT_CLIENT_ID,
+        client_secret: process.env.PASSPORT_CLIENT_SECRET,
+        userinfo_endpoint: process.env.LARAVEL_ENDPOINT + "/api/oauth/me",
+      }
+    }
+  },
 
   axios: {
   },

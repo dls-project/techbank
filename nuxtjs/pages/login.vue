@@ -60,7 +60,6 @@ export default {
         }
     },
     methods: {
-        auth: false,
         getHeaders(token) {
           return {
             Authorization: `Bearer ${token}`
@@ -76,18 +75,17 @@ export default {
                 password: this.user.password,
             }
             console.log(postData)
-            axios.post('http://localhost:3000/api/oauth/token', postData)
+            axios.post('http://localhost:8000/oauth/token', postData)
             .then(
                 response => {
-                //取得したアクセストークンをヘッダーに入れる
-                const headers = this.getHeaders(response.data.access_token)
-                axios.defaults.headers.common['Authorization'] = headers.Authorization
-                
-                }
+                    //取得したアクセストークンをヘッダーに入れる
+                    const headers = this.getHeaders(response.data.access_token)
+                    axios.defaults.headers.common['Authorization'] = headers.Authorization
+                },
+                this.$router.replace("/")
             )
             .catch(error => {
                 alert('ログインに失敗しました')
-
             })
         }
     }

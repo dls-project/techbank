@@ -45,7 +45,7 @@
       <b-col>
         <b-pagination 
           align="center" 
-          limit=10
+          :limit="limit"
           :total-rows="totalRows"
           :per-page="perPage"
           v-model="currentPage"
@@ -112,6 +112,7 @@ export default {
       showEmpty: true,
       filter: null,
       totalRows: 0,
+      limit: 10,
 
       //新規作成フォーム
       radioSelected: null,
