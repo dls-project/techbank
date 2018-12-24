@@ -21,3 +21,7 @@ Route::group(['middleware' => ['api']], function(){
     Route::resource('m_employee', 'Api\MEmployeeController', ['except' => ['create', 'edit']]);
 });
 
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('auth/me', 'Api\AuthController@local');
+    Route::get('oauth/me', 'Api\AuthController@oauth');
+});

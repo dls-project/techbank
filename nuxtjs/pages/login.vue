@@ -20,7 +20,7 @@
                             label-for="loginInput1">
                     <b-form-input id="loginInput1"
                                 type="text"
-                                v-model="username"
+                                v-model="user.username"
                                 required
                                 placeholder="ユーザーIDを入力">
                     </b-form-input>
@@ -30,7 +30,7 @@
                             label-for="loginInput2">
                     <b-form-input id="loginInput2"
                                 type="password"
-                                v-model="password"
+                                v-model="user.password"
                                 required
                                 placeholder="パスワードを入力">
                     </b-form-input>
@@ -53,12 +53,15 @@ export default {
     },
     data() {
         return {
-            username:'',
-            password:''
+            user: {
+                username:'',
+                password:''
+            }
         }
     },
     methods: {
-         getHeaders(token) {
+        auth: false,
+        getHeaders(token) {
           return {
             Authorization: `Bearer ${token}`
           }
@@ -66,19 +69,22 @@ export default {
         login() {
             const postData = {
                 grant_type: 'password',
-                client_id: '2',
-                client_secret: 'GRlomNcC8HqmQglvR3aWJNzCl0wk2UeazC5OCwLK',
-                username: this.username,
-                password: this.password,
+                client_id: process.env.PASSPORT_PASSWORD_GRANT_ID,
+                client_secret: process.env.PASSPORT_PASSWORD_GRANT_SECRET,
+                scope: "*",
+                username: this.user.username,
+                password: this.user.password,
             }
-            axios.post('http://localhost:8000/oauth/token', postData)
-            .then(response => {
-
+            console.log(postData)
+            axios.post('http://localhost:3000/api/oauth/token', postData)
+            .then(
+                response => {
                 //取得したアクセストークンをヘッダーに入れる
                 const headers = this.getHeaders(response.data.access_token)
                 axios.defaults.headers.common['Authorization'] = headers.Authorization
-                console.log(headers)
-                })
+                
+                }
+            )
             .catch(error => {
                 alert('ログインに失敗しました')
 
