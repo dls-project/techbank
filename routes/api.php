@@ -13,15 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::group(['middleware' => ['api']], function(){
     Route::resource('m_employee', 'Api\MEmployeeController', ['except' => ['create', 'edit']]);
 });
 
-Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('auth/me', 'Api\AuthController@local');
-    Route::get('oauth/me', 'Api\AuthController@oauth');
-});
+Route::post('/login', 'Api\AuthController@login')->name('login');
+Route::post('/logout', 'Api\AuthController@logout');
+// Route::get('/user', 'Api\AuthController@user');
+
+// Route::group(['middleware' => 'auth:api'], function() {
+//     Route::get('auth/me', 'Api\AuthController@local');
+//     Route::get('oauth/me', 'Api\AuthController@oauth');
+// });

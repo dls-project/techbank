@@ -14,14 +14,14 @@
         </b-col>
         <b-col class="right">
         <div class="login-form">
+            <form @submit.prevent="login">
             <b-form>
                 <b-form-group id="loginInputGroup1"
                             label="ユーザー名"
                             label-for="loginInput1">
                     <b-form-input id="loginInput1"
                                 type="text"
-                                v-model="user.username"
-                                required
+                                v-model="userForm.username"
                                 placeholder="ユーザーIDを入力">
                     </b-form-input>
                 </b-form-group>
@@ -30,13 +30,13 @@
                             label-for="loginInput2">
                     <b-form-input id="loginInput2"
                                 type="password"
-                                v-model="user.password"
-                                required
+                                v-model="userForm.password"
                                 placeholder="パスワードを入力">
                     </b-form-input>
                 </b-form-group>
-                <b-button @click="login" variant="primary">ログイン</b-button>
+                <b-button type="submit" variant="primary">ログイン</b-button>
             </b-form>
+            </form>
         </div>
         </b-col>
     </b-row>
@@ -45,7 +45,7 @@
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
-import axios from 'axios';
+import axios from 'axios'
 export default {
     layout: 'base',
     components: {
@@ -53,7 +53,8 @@ export default {
     },
     data() {
         return {
-            user: {
+            // middleware: 'auth',
+            userForm: {
                 username:'',
                 password:''
             }
@@ -65,28 +66,36 @@ export default {
             Authorization: `Bearer ${token}`
           }
         },
-        login() {
-            const postData = {
-                grant_type: 'password',
-                client_id: process.env.PASSPORT_PASSWORD_GRANT_ID,
-                client_secret: process.env.PASSPORT_PASSWORD_GRANT_SECRET,
-                scope: "*",
-                username: this.user.username,
-                password: this.user.password,
-            }
-            console.log(postData)
-            axios.post('http://localhost:8000/oauth/token', postData)
-            .then(
-                response => {
-                    //取得したアクセストークンをヘッダーに入れる
-                    const headers = this.getHeaders(response.data.access_token)
-                    axios.defaults.headers.common['Authorization'] = headers.Authorization
-                },
-                this.$router.replace("/")
-            )
-            .catch(error => {
-                alert('ログインに失敗しました')
-            })
+        // login() {
+        //     const postData = {
+        //         grant_type: 'password',
+        //         client_id: process.env.PASSPORT_PASSWORD_GRANT_ID,
+        //         client_secret: process.env.PASSPORT_PASSWORD_GRANT_SECRET,
+        //         scope: "*",
+        //         username: this.userForm.username,
+        //         password: this.userForm.password,
+        //     }
+        //     console.log(postData)
+        //     axios.post('http://localhost:8000/oauth/token', postData)
+        //     .then(
+        //         response => {
+        //             //取得したアクセストークンをヘッダーに入れる
+        //             const headers = this.getHeaders(response.data.access_token)
+        //             axios.defaults.headers.common['Authorization'] = headers.Authorization
+        //         },
+        //     )
+        //     .catch(error => {
+        //         alert('ログインに失敗しました')
+        //     })
+        // }
+        async login() {
+            await this.$auth.login( {              
+                data: this.userForm, 
+            });
+            console.log(this.data)
+            this.$router.push({
+                path: '/'
+            });
         }
     }
 }

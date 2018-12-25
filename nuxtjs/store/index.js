@@ -4,11 +4,10 @@ import axios from 'axios'
 const createStore = () => {
   return new Vuex.Store({
     state: () => ({
-        employeeList: [],
-
+      employeeList: [],
     }),
     mutations: {
-        setEmployeeList(state, list) {
+      setEmployeeList(state, list) {
         state.employeeList = list
       },
     },

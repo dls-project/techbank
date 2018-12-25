@@ -49,7 +49,7 @@
           :total-rows="totalRows"
           :per-page="perPage"
           v-model="currentPage"
-           />
+        />
       </b-col>
     </b-row>
     </b-container>

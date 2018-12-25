@@ -4,7 +4,8 @@
       <strong>User</strong>
       <pre>user</pre>
     </div>
-    <button @click="logout">Logout</button>
+    <!-- <button @click="logout">Logout</button> -->
+    <a class="nav-link" @click.prevent="logout" href="#">Logout</a> 
   </section>
 </template>
 
@@ -22,7 +23,7 @@ export default {
   },
   methods: {
     logout() {
-      // this.$auth.logout();
+      this.$auth.logout();
       this.$router.replace("/login");
     }
   }
