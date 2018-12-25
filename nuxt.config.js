@@ -2,42 +2,43 @@ require('dotenv').config()
 
 module.exports = {
   mode: 'spa',
+  srcDir: "./nuxtjs",
+  modules: [
+    '@nuxtjs/dotenv',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    '@nuxtjs/proxy',
+    'bootstrap-vue/nuxt',
+    'nuxt-fontawesome'
+  ],
   env: {
     FRONT_API_URL: process.env.FRONT_API_URL,
     PASSPORT_PASSWORD_GRANT_ID: process.env.PASSPORT_PASSWORD_GRANT_ID,
     PASSPORT_PASSWORD_GRANT_SECRET: process.env.PASSPORT_PASSWORD_GRANT_SECRET,
   },
-  srcDir: "./nuxtjs",
-  modules: [
-    '@nuxtjs/dotenv',
-    '@nuxtjs/proxy',
-    '@nuxtjs/axios',
-    '@nuxtjs/auth',
-    'bootstrap-vue/nuxt',
-    'nuxt-fontawesome'
-  ],
 
-  router: {
-    // middleware: ['auth']
+  axios: { 
+    baseURL: 'http://localhost:3000',
+    proxy: true
   },
 
   auth: {
     strategies: {
       local: {
         endpoints: {
-          login: { url: 'login', method: 'post', propertyName: 'meta.token' },
-          user: { url: 'user', method: 'get', propertyName: 'data' },
-          logout: { url: 'logout', method: 'post' }
+          login: { url: '/login', method: 'post', propertyName: 'access_token' },
+          logout: { url: '/logout', method: 'post' },
+          user: { url: '/user', method: 'get', propertyName: false }
         }
+      },
+      'laravel.passport': {
+        url: 'http://localhost:3000',
+        client_id: process.env.PASSPORT_CLIENT_ID,
+        client_secret: process.env.PASSPORT_CLIENT_SECRET,
+        userinfo_endpoint: process.env.LARAVEL_ENDPOINT + "/api/oauth/me",
       }
     }
   },
-
-  axios: {
-  },
-
-  plugins: ['~plugins/mixins/user.js'],
-
   proxy: {
     '/api': 'http://localhost:8000'
   },
@@ -52,6 +53,13 @@ module.exports = {
       }
     ]
   },
+
+  router: {
+    middleware: ['auth']
+  },
+
+  plugins: ['~plugins/mixins/user.js'],
+
   /*
   ** Headers of the page
   */

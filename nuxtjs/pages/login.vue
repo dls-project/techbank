@@ -14,7 +14,6 @@
         </b-col>
         <b-col class="right">
         <div class="login-form">
-            <form @submit.prevent="login">
             <b-form>
                 <b-form-group id="loginInputGroup1"
                             label="ユーザー名"
@@ -34,9 +33,9 @@
                                 placeholder="パスワードを入力">
                     </b-form-input>
                 </b-form-group>
-                <b-button type="submit" variant="primary">ログイン</b-button>
+                <b-button @click="login" variant="primary">ログイン</b-button>
+                <b-button @click="oauthLogin" variant="primary">passportログイン</b-button>
             </b-form>
-            </form>
         </div>
         </b-col>
     </b-row>
@@ -44,16 +43,15 @@
 </template>
 
 <script>
-import AppLogo from '~/components/AppLogo.vue'
-import axios from 'axios'
+
 export default {
     layout: 'base',
+    middleware: 'auth',
     components: {
-        AppLogo
+        
     },
     data() {
         return {
-            // middleware: 'auth',
             userForm: {
                 username:'',
                 password:''
@@ -61,11 +59,11 @@ export default {
         }
     },
     methods: {
-        getHeaders(token) {
-          return {
-            Authorization: `Bearer ${token}`
-          }
-        },
+        // getHeaders(token) {
+        //   return {
+        //     Authorization: `Bearer ${token}`
+        //   }
+        // },
         // login() {
         //     const postData = {
         //         grant_type: 'password',
@@ -88,14 +86,20 @@ export default {
         //         alert('ログインに失敗しました')
         //     })
         // }
-        async login() {
-            await this.$auth.login( {              
+        login() {
+            this.$auth.loginWith('local', {              
                 data: this.userForm, 
-            });
-            console.log(this.data)
-            this.$router.push({
+            })
+            console.log(this.$auth.loggedIn)
+            console.log(this.$store.state.auth.loggedIn)
+            console.log(this.$auth.user)
+            console.log(this.userForm.username)
+            this.$router.replace({
                 path: '/'
             });
+        },
+        oauthLogin() {
+            this.$auth.loginWith("laravel.passport");
         }
     }
 }
