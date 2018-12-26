@@ -97,6 +97,14 @@ export default {
           label: '性別',
           sortable: true
         },
+        email: {
+          label: 'E-MAIL',
+          sortable: true
+        },
+        address: {
+          label: '住所',
+          sortable: true
+        },
         service_code: {
           label: 'サービスコード',
           sortable: true

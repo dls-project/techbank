@@ -20,8 +20,10 @@ class MEmployeeTableSeeder extends Seeder
             $params = [
                 'emp_id' => sprintf('%05d', $i),
                 'emp_name' => $faker->name,
+                'email' => $faker->unique()->safeEmail,
                 'sex' => $faker->randomElement( $array = ['男', '女']),
                 'service_code' => $faker->randomDigit(),
+                'address' => $faker->address,
                 'created_at' => Carbon::today(),
                 'updated_at' => Carbon::today()
             ];

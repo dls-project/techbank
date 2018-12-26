@@ -30,7 +30,9 @@ class MEmployeeController extends Controller
         $employee = new MEmployee;
         $employee->emp_id = $request->empId;
         $employee->emp_name = $request->empName;
+        $employee->email = $request->email;
         $employee->sex = $request->sex;
+        $employee->address = $request->address;
         $employee->service_code = $request->serviceCode;
         $employee->save();
         return redirect('api/m_employee');
@@ -59,7 +61,9 @@ class MEmployeeController extends Controller
     {
         $employee = MEmployee::find($id);
         $employee->emp_name = $request->empName;
+        $employee->email = $request->email;
         $employee->sex = $request->sex;
+        $employee->address = $request->address;
         $employee->service_code = $request->serviceCode;
         $employee->save();
         return redirect('api/m_employee/'.$id);
