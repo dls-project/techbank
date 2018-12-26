@@ -3,6 +3,15 @@
     <header class="header">
       <a class="btn-menu" @click="show=!show"><font-awesome-icon icon="bars"/></a>
       <a id="logo" href="/">TechBank</a>
+      <div class="user-menu">
+        <b-dropdown variant="success" right size="sm">
+          <template slot="button-content">
+            <font-awesome-icon icon="user"/>
+          </template>
+          <b-dropdown-item href="#">username</b-dropdown-item>
+          <b-dropdown-item @click="logout">ログアウト</b-dropdown-item>
+        </b-dropdown>
+      </div>
     </header>
     <div class="wrapper">
       <nav class="menu-bar" v-show="show">
@@ -14,13 +23,13 @@
               :disabled="item.disabled">
               {{item.title}}
             </b-link>{{item.link}}
-            <b-progress
+            <!-- <b-progress
               :variant="item.variant"
               :value="item.sts"
               :max="max"
               height="6px"
               animated
-            />
+            /> -->
           </b-list-group-item>
         </b-list-group>
       </nav>
@@ -45,6 +54,12 @@ export default {
         {id:6, title:'保有スキル', link:'＃', disabled:true, sts:10}
       ],
       max:100
+    }
+  },
+  methods: {
+    logout() {
+      this.$auth.logout()
+      this.$router.replace("/login")
     }
   }
 }
@@ -93,6 +108,17 @@ html, {
   text-decoration: none;
   margin-left: 10px;
 }
+
+.user-menu {
+  margin-left: auto;
+  margin-right: 10px;
+  color: white;
+}
+
+.user-menu {
+  color: white;
+}
+
 .wrapper {
   display: flex;
   align-items: stretch;

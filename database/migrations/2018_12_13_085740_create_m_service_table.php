@@ -17,6 +17,7 @@ class CreateMServiceTable extends Migration {
 			$table->integer('id')->unsigned()->primary()->comment('ID');
 			$table->integer('service_code')->unsigned()->comment('サービスコード');
 			$table->string('service_name', 100)->comment('サービス名');
+			$table->timestamps();
 			$table->unique(['service_code','service_name'], 'm_service_un');
 		});
 	}

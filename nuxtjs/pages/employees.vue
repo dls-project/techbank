@@ -34,9 +34,9 @@
       <template slot="action" slot-scope="data">
         <div class="action">
           <b-button-group size="sm">
-            <b-button variant="info"><font-awesome-icon icon="file" class="mr-1"/>詳細</b-button>
-            <b-button variant="success"><font-awesome-icon icon="edit" class="mr-1"/>編集</b-button>
-            <b-button v-b-modal.delete variant="danger"><font-awesome-icon icon="trash" class="mr-1"/>削除</b-button>
+            <b-button variant="outline-success"><font-awesome-icon icon="file" class="mr-1"/>詳細</b-button>
+            <b-button variant="outline-success"><font-awesome-icon icon="edit" class="mr-1"/>編集</b-button>
+            <b-button v-b-modal.delete variant="outline-success"><font-awesome-icon icon="trash" class="mr-1"/>削除</b-button>
           </b-button-group>
         </div>
       </template>

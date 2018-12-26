@@ -16,7 +16,9 @@ class CreateMSkillTable extends Migration {
 		{
 			$table->integer('id')->unsigned()->primary()->comment('ID');
 			$table->integer('skill_code')->unsigned()->comment('スキルコード');
+			$table->string('skill_class', 100)->comment('スキル種類');
 			$table->string('skill_name', 100)->comment('スキル名');
+			$table->timestamps();
 			$table->unique(['skill_code','skill_name'], 'm_skill_un');
 		});
 	}

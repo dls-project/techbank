@@ -58,6 +58,11 @@ export default {
             }
         }
     },
+    created () {
+        if (this.$auth.loggedIn) {
+            this.$router.replace('/')
+        }
+    },
     methods: {
         // getHeaders(token) {
         //   return {
@@ -86,17 +91,18 @@ export default {
         //         alert('ログインに失敗しました')
         //     })
         // }
-        login() {
-            this.$auth.loginWith('local', {              
-                data: this.userForm, 
-            })
-            console.log(this.$auth.loggedIn)
-            console.log(this.$store.state.auth.loggedIn)
-            console.log(this.$auth.user)
-            console.log(this.userForm.username)
-            this.$router.replace({
-                path: '/'
-            });
+        async login() {
+            try {     
+                await this.$auth.loginWith('local', {              
+                    data: this.userForm, 
+                })
+                console.log(this.$auth.loggedIn)
+                this.$router.push('/')
+                console.log(this.userForm.username)
+                console.log(this.$store.state.auth.loggedIn)
+             } catch(e) {
+                 alert("login失敗")
+             }
         },
         oauthLogin() {
             this.$auth.loginWith("laravel.passport");

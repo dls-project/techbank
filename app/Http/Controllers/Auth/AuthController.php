@@ -8,7 +8,12 @@ use App\Http\Resources\UserResource;
 
 class AuthController extends Controller
 {
-    
+    public function test() {
+        echo("aaaaaaaa");
+        
+        return "aaaaaaaa";
+    }
+
     public function login(Request $request)
     {
         $this->validate($request, [

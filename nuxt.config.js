@@ -18,29 +18,24 @@ module.exports = {
   },
 
   axios: { 
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://localhost:8000/',
     proxy: true
   },
 
   auth: {
+    plugins: ['~/plugins/mixins/user.js'],
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/login', method: 'post', propertyName: 'access_token' },
-          logout: { url: '/logout', method: 'post' },
-          user: { url: '/user', method: 'get', propertyName: false }
+          login: { url: 'login', method: 'post', propertyName: 'access_token' },
+          user: { url: 'user', method: 'get', propertyName: false },
+          logout: false,
         }
       },
-      'laravel.passport': {
-        url: 'http://localhost:3000',
-        client_id: process.env.PASSPORT_CLIENT_ID,
-        client_secret: process.env.PASSPORT_CLIENT_SECRET,
-        userinfo_endpoint: process.env.LARAVEL_ENDPOINT + "/api/oauth/me",
-      }
     }
   },
   proxy: {
-    '/api': 'http://localhost:8000'
+    '/api': 'http://localhost:8000/'
   },
   /*
   ** fontawesome
@@ -55,10 +50,8 @@ module.exports = {
   },
 
   router: {
-    middleware: ['auth']
+    // middleware: ['auth']
   },
-
-  plugins: ['~plugins/mixins/user.js'],
 
   /*
   ** Headers of the page

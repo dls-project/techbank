@@ -19,6 +19,7 @@ class CreateTEmpSkillTable extends Migration {
 			$table->integer('skill_code')->unsigned()->comment('スキルコード');
 			$table->boolean('exp_year')->nullable()->comment('経験年数');
 			$table->boolean('skill_level')->nullable()->comment('スキルレベル');
+			$table->timestamps();
 			$table->unique(['emp_id','skill_code'], 't_emp_skill_un');
 		});
 	}
