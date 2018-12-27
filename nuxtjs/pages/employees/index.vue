@@ -34,12 +34,12 @@
       <template slot="action" slot-scope="data">
         <div class="action">
           <b-button-group size="sm">
-            <b-button variant="outline-success"><font-awesome-icon icon="file" class="mr-1"/>詳細</b-button>
+            <!-- <b-button variant="outline-success"><font-awesome-icon icon="file" class="mr-1"/>詳細</b-button> -->
             <b-button variant="outline-success"><font-awesome-icon icon="edit" class="mr-1"/>編集</b-button>
-            <b-button v-b-modal.delete variant="outline-success"><font-awesome-icon icon="trash" class="mr-1"/>削除</b-button>
+            <b-button v-b-modal.delete variant="outline-success" @click="destroy"><font-awesome-icon icon="trash" class="mr-1"/>削除</b-button>
           </b-button-group>
         </div>
-      </template>
+      </template>i
     </b-table>
     <b-row>
       <b-col>
@@ -134,24 +134,43 @@ export default {
     }
   },
   computed: {
-    // totalRows() {
-    //   return this.items.length
-    // }
+   
   },
   methods: {
+
+    // フィルター
     onFiltered (filteredItems) {
       this.totalRows = filteredItems.length
       this.currentPage = 1
     },
-    create() {
-      alert('新規作成')
+
+    // -----API-----
+    // 全件取得
+    index() {
+      this.$store.dispatch('getEmployeeList').then(() => {
+        this.items = this.$store.state.employeeList.data
+      })
+    },
+
+    // 新規作成
+    store() {
+      //
+    },
+
+    // 更新
+    update() {
+      //
+    },
+
+    // 削除
+    destroy() {
+      // axios.delete('/api/m_employee/')
+      alert()
     }
+    
   },
   mounted() {
-    this.$store.dispatch('getEmployeeList').then(() => {
-      // console.log(this.$store.state.employeeList.data)
-      this.items = this.$store.state.employeeList.data
-    })
+    this.index()
   }
 }
 </script>

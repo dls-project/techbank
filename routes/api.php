@@ -18,8 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // Route::post('login', 'AuthController@login');
-Route::post('register', 'AuthController@register');
-Route::post('logout', 'AuthController@logout');
+Route::post('register', 'api/AuthController@register');
+Route::post('logout', 'api/AuthController@logout');
 
 Route::middleware('auth:api')->group(function () {
     Route::get('user', 'AuthController@details');
@@ -27,7 +27,7 @@ Route::middleware('auth:api')->group(function () {
 });
 
 Route::middleware('api')->group(function () {
-    Route::post('login', 'AuthController@login');
+    Route::post('login', 'api/AuthController@login');
     Route::resource('m_employee', 'api\MEmployeeController', ['except' => ['create', 'edit']]);
 });
 

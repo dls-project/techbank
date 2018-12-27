@@ -29,7 +29,7 @@ module.exports = {
         endpoints: {
           login: { url: 'login', method: 'post', propertyName: 'access_token' },
           user: { url: 'user', method: 'get', propertyName: false },
-          logout: false,
+          logout: { url: '/', method: 'post', propertyName: 'logout' },
         }
       },
     }
