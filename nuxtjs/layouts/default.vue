@@ -1,7 +1,7 @@
 <template>
   <div>
     <header class="header">
-      <a class="btn-menu" @click="show=!show"><font-awesome-icon icon="bars"/></a>
+      <a id="btn-menu" @click="show=!show"><font-awesome-icon icon="bars"/></a>
       <a id="logo" href="/">TechBank</a>
       <div class="user-menu">
         <b-dropdown variant="success" right size="sm">
@@ -14,7 +14,7 @@
       </div>
     </header>
     <div class="wrapper">
-      <div class="left-side" v-show="show">
+      <div class="left-side" v-show="show"  v-on-clickaway="away">
         <org-menu/>
       </div>
       <div class="main">
@@ -26,7 +26,9 @@
 
 <script>
 import OrgMenu from '@/components/organisms/OrgMenu'
+import { mixin as clickaway } from 'vue-clickaway';
 export default {
+  mixins: [ clickaway ],
   components: {
     OrgMenu,
   },
@@ -40,6 +42,16 @@ export default {
     logout() {
       this.$auth.logout()
       this.$router.replace("/login")
+    },
+    away(e) {
+      let element = document.getElementById('btn-menu')
+      if(this.show == false) {
+        return
+      }
+      if(element.contains(e.target)) {
+        return
+      }
+      this.show = false
     }
   }
 }
@@ -70,7 +82,7 @@ html, {
   background: indigo;
   color: white;
 }
-.btn-menu {
+#btn-menu {
   display: block;
   width: 50px;
   background: rgba(0,0,0,0.1);
@@ -79,7 +91,7 @@ html, {
   align-items: center;
   height: 100%;
 }
-.btn-menu:hover {
+#btn-menu:hover {
   background-color: rgba(0,0,0,0.2)
 }
 #logo {
@@ -113,8 +125,12 @@ html, {
   order: 0;
   width: 250px;
   padding: 15px;
-  background: #f5f5f5;
-  border-right:1px solid gainsboro;
+  height: calc(100vh - 50px);
+  background: rgba(255,255,255,0.8);
+  /* border-right:1px solid gainsboro; */
+  position:absolute;
+  z-index: 9999;
+  box-shadow:3px 0px 40px rgba(0,0,0,0.4);
 }
 .main {
   order: 1;
