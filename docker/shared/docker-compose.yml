@@ -1,0 +1,44 @@
+version: "3"
+services:
+  # リバースプロクシー
+  proxy:
+    image: jwilder/nginx-proxy
+    container_name: proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs:ro
+    restart: always
+    logging:
+      options:
+        max-size: 5m
+        max-file: "10"
+
+  # データベース
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: techbank
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: test1234
+      MYSQL_ROOT_PASSWORD: password
+    restart: always
+    logging:
+      options:
+        max-size: 5m
+        max-file: "10"
+
+volumes:
+  db-data:
+
+networks:
+  default:
+    external:
+      name: shared
