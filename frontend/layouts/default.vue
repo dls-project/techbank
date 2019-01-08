@@ -1,10 +1,17 @@
 <template>
   <div>
     <header class="header">
-      <a id="btn-menu" @click="show=!show"><font-awesome-icon icon="bars"/></a>
-      <a id="logo" href="/">TechBank</a>
+      <a 
+        id="btn-menu" 
+        @click="show=!show"><font-awesome-icon icon="bars"/></a>
+      <a 
+        id="logo" 
+        href="/">TechBank</a>
       <div class="user-menu">
-        <b-dropdown variant="success" right size="sm">
+        <b-dropdown 
+          variant="success" 
+          right 
+          size="sm">
           <template slot="button-content">
             <font-awesome-icon icon="user"/>
           </template>
@@ -14,7 +21,10 @@
       </div>
     </header>
     <div class="wrapper">
-      <div class="left-side" v-show="show"  v-on-clickaway="away">
+      <div 
+        v-on-clickaway="away" 
+        v-show="show" 
+        class="left-side">
         <org-menu/>
       </div>
       <div class="main">
@@ -25,17 +35,17 @@
 </template>
 
 <script>
-import OrgMenu from '@/components/organisms/OrgMenu'
-import { mixin as clickaway } from 'vue-clickaway';
+import OrgMenu from "@/components/organisms/OrgMenu"
+import { mixin as clickaway } from "vue-clickaway"
 export default {
-  mixins: [ clickaway ],
   components: {
-    OrgMenu,
+    OrgMenu
   },
+  mixins: [clickaway],
   data() {
     return {
       show: true,
-      max:100
+      max: 100
     }
   },
   methods: {
@@ -44,11 +54,11 @@ export default {
       this.$router.replace("/login")
     },
     away(e) {
-      let element = document.getElementById('btn-menu')
-      if(this.show == false) {
+      let element = document.getElementById("btn-menu")
+      if (this.show == false) {
         return
       }
-      if(element.contains(e.target)) {
+      if (element.contains(e.target)) {
         return
       }
       this.show = false
@@ -57,8 +67,9 @@ export default {
 }
 </script>
 <style>
-html, {
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+html {
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -68,7 +79,9 @@ html, {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -85,14 +98,14 @@ html, {
 #btn-menu {
   display: block;
   width: 50px;
-  background: rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
 #btn-menu:hover {
-  background-color: rgba(0,0,0,0.2)
+  background-color: rgba(0, 0, 0, 0.2);
 }
 #logo {
   font-size: 1.5rem;
@@ -126,11 +139,11 @@ html, {
   width: 250px;
   padding: 15px;
   height: calc(100vh - 50px);
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
   /* border-right:1px solid gainsboro; */
-  position:absolute;
+  position: absolute;
   z-index: 9999;
-  box-shadow:3px 0px 40px rgba(0,0,0,0.4);
+  box-shadow: 3px 0px 40px rgba(0, 0, 0, 0.4);
 }
 .main {
   order: 1;

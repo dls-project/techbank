@@ -1,25 +1,16 @@
 <template>
-  <section >
-  </section>
+  <section />
 </template>
 
 <script>
 export default {
-  components: {
-    
-  },
+  components: {},
   data() {
-    return {
-
-    }
+    return {}
   },
-  methods: {
-
-  }
+  methods: {}
 }
 </script>
 
 <style scoped>
-
 </style>
-
