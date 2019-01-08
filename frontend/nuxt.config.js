@@ -2,7 +2,7 @@ require('dotenv').config()
 
 module.exports = {
   mode: 'spa',
-  srcDir: "./nuxtjs",
+  // srcDir: "./frontend",
   modules: [
     '@nuxtjs/dotenv',
     '@nuxtjs/axios',
@@ -18,7 +18,7 @@ module.exports = {
   },
 
   axios: { 
-    baseURL: 'http://localhost:8000/',
+    baseURL: 'http://localhost:8000/api',
     proxy: true
   },
 
