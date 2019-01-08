@@ -20,15 +20,17 @@ services:
   mysql:
     image: mysql:5.7
     container_name: mysql
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - "3306:3306"
     volumes:
-      - db-data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: techbank
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: testuser
       MYSQL_PASSWORD: test1234
-      MYSQL_ROOT_PASSWORD: password
+      TZ: "Asia/Tokyo"
     restart: always
     logging:
       options:
@@ -36,7 +38,9 @@ services:
         max-file: "10"
 
 volumes:
-  db-data:
+  mysql-data:
+    external:
+      name: mysql-data
 
 networks:
   default:
