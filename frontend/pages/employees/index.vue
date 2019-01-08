@@ -30,12 +30,12 @@
         :items="items" 
         :fields="fields" 
         :current-page="currentPage" 
-        striped
         :per-page="perPage"
-        bordered
         :show-empty="showEmpty"
-        small
         :filter="filter"
+        striped
+        bordered
+        small
         hover
         class="custom-table"
         empty-text="表示するデータがありません"

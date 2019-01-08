@@ -24,13 +24,18 @@ module.exports = {
     proxy: true
   },
 
+  plugins: [
+    "./plugins/mixins/user.js",
+    "./plugins/mixins/validation.js",
+    "./plugins/axios.js"
+  ],
+
   auth: {
-    plugins: ["~/plugins/mixins/user.js"],
     strategies: {
       local: {
         endpoints: {
           login: { url: "login", method: "post", propertyName: "access_token" },
-          user: { url: "user", method: "get", propertyName: data },
+          user: { url: "user", method: "get", propertyName: "data" },
           logout: { url: "logout", method: "post" }
         }
       }
@@ -75,7 +80,7 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ["@/assets/styles.css"],
+  css: ["@/assets/style.css"],
 
   /*
   ** Build configuration
