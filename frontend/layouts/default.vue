@@ -51,7 +51,7 @@ export default {
   methods: {
     logout() {
       this.$auth.logout()
-      this.$router.replace("/login")
+      // this.$router.replace("/login")
     },
     away(e) {
       let element = document.getElementById("btn-menu")
@@ -67,26 +67,6 @@ export default {
 }
 </script>
 <style>
-html {
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 .header {
   height: 50px;
   display: flex;
@@ -120,10 +100,6 @@ html {
   color: white;
 }
 
-.user-menu {
-  color: white;
-}
-
 .wrapper {
   display: flex;
   align-items: stretch;
@@ -139,7 +115,7 @@ html {
   width: 250px;
   padding: 15px;
   height: calc(100vh - 50px);
-  background: rgba(255, 255, 255, 0.8);
+  background: white;
   /* border-right:1px solid gainsboro; */
   position: absolute;
   z-index: 9999;

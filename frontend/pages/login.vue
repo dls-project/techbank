@@ -16,7 +16,7 @@
       </b-col>
       <b-col class="right">
         <div class="login-form">
-          <b-form>
+          <b-form @submit.prevent="login">
             <b-form-group 
               id="loginInputGroup1"
               label="ユーザー名"
@@ -38,7 +38,8 @@
                 placeholder="パスワードを入力"/>
             </b-form-group>
             <b-button 
-              variant="primary" 
+              variant="primary"
+              type="submit"
               @click="login">ログイン</b-button>
             <b-button 
               variant="primary" 
@@ -53,7 +54,7 @@
 <script>
 export default {
   layout: "base",
-  middleware: "auth",
+  middleware: "guest",
   components: {},
   data() {
     return {
@@ -63,11 +64,11 @@ export default {
       }
     }
   },
-  created() {
-    if (this.$auth.loggedIn) {
-      this.$router.replace("/")
-    }
-  },
+  // created() {
+  //   if (this.$auth.loggedIn) {
+  //     this.$router.replace("/")
+  //   }
+  // },
   methods: {
     // getHeaders(token) {
     //   return {
@@ -97,17 +98,12 @@ export default {
     //     })
     // }
     async login() {
-      try {
-        await this.$auth.loginWith("local", {
-          data: this.userForm
-        })
-        console.log(this.$auth.loggedIn)
-        this.$router.push("/")
-        console.log(this.userForm.username)
-        console.log(this.$store.state.auth.loggedIn)
-      } catch (e) {
-        alert("login失敗")
-      }
+      await this.$auth.loginWith("local", {
+        data: this.userForm
+      })
+      this.$router.push({
+        path: this.$route.query.redirect || "/"
+      })
     },
     oauthLogin() {
       this.$auth.loginWith("laravel.passport")

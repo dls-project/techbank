@@ -34,7 +34,7 @@ module.exports = {
     strategies: {
       local: {
         endpoints: {
-          login: { url: "login", method: "post", propertyName: "access_token" },
+          login: { url: "login", method: "post", propertyName: "meta.token" },
           user: { url: "user", method: "get", propertyName: "data" },
           logout: { url: "logout", method: "post" }
         }
@@ -58,6 +58,7 @@ module.exports = {
 
   router: {
     // middleware: ['auth']
+    middleware: ["clearValidationErrors"]
   },
 
   /*

@@ -229,7 +229,7 @@ export default {
   visibility: visible;
 }
 .td-action {
-  width: 100px;
+  /* width: 150px; */
   padding: 0 !important;
 }
 .td-action button {
