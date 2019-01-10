@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Carbon\Carbon;
 
-class MEmployeeTableSeeder extends Seeder
+class EmployeesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,21 +14,22 @@ class MEmployeeTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('ja_JP');
-        DB::table('m_employee')->truncate();
+        DB::table('employees')->truncate();
         //ダミデーターを作成
         for( $i = 1; $i <= 1000; $i++ ) {
             $params = [
+                'id' => $i,
                 'emp_id' => sprintf('%05d', $i),
                 'emp_name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
-                'sex' => $faker->randomElement( $array = ['男', '女']),
+                'gender' => $faker->randomElement( $array = ['男', '女']),
                 'service_code' => $faker->randomDigit(),
                 'address' => $faker->address,
                 'created_at' => Carbon::today(),
                 'updated_at' => Carbon::today()
             ];
-            DB::table('m_employee')->insert($params);
-            // factory(App\MEmployee::class, 1000)->create();
+            DB::table('employees')->insert($params);
+            // factory(App\Employees::class, 1000)->create();
         }
 
     }

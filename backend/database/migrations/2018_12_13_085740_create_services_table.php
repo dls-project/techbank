@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateMServiceTable extends Migration {
+class CreateServicesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,13 @@ class CreateMServiceTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('m_service', function(Blueprint $table)
+		Schema::create('services', function(Blueprint $table)
 		{
-			$table->integer('id')->unsigned()->primary()->comment('ID');
-			$table->integer('service_code')->unsigned()->comment('サービスコード');
+			$table->increments('id');
+			$table->char('service_code',2)->comment('サービスコード');
 			$table->string('service_name', 100)->comment('サービス名');
 			$table->timestamps();
-			$table->unique(['service_code','service_name'], 'm_service_un');
+			$table->unique(['service_code','service_name'], 'services_un');
 		});
 	}
 
@@ -30,7 +30,7 @@ class CreateMServiceTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('m_service');
+		Schema::drop('services');
 	}
 
 }
