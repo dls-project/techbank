@@ -14,7 +14,8 @@
         "laravel/framework": "5.7.*",
         "laravel/passport": "^7.0",
         "laravel/tinker": "^1.0",
-        "mpociot/laravel-apidoc-generator": "^3.3"
+        "mpociot/laravel-apidoc-generator": "^3.3",
+        "tymon/jwt-auth": "1.0.0-rc.3"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
