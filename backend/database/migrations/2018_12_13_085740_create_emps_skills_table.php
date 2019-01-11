@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateEmpsSkilslTable extends Migration {
+class CreateEmpsSkillsTable extends Migration {
 
 	/**
 	 * Run the migrations.

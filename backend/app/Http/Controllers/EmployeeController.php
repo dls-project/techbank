@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\MEmployee;
+use App\Employee;
 use App\Http\Controllers\Controller;
 
-class MEmployeeController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class MEmployeeController extends Controller
      */
     public function index()
     {
-        $mEmployee = MEmployee::all();
-        return $mEmployee;
+        $employees = Employee::all();
+        return $employees;
     }
 
     /**
@@ -27,15 +27,15 @@ class MEmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $employee = new MEmployee;
+        $employee = new Employee;
         $employee->emp_id = $request->empId;
         $employee->emp_name = $request->empName;
         $employee->email = $request->email;
-        $employee->sex = $request->sex;
+        $employee->gender = $request->gender;
         $employee->address = $request->address;
         $employee->service_code = $request->serviceCode;
         $employee->save();
-        return redirect('api/m_employee');
+        return redirect('employees');
     }
 
     /**
@@ -46,7 +46,7 @@ class MEmployeeController extends Controller
      */
     public function show($id)
     {
-        $employee = MEmployee::find($id);
+        $employee = Employee::find($id);
         return $employee;
     }
 
@@ -59,14 +59,14 @@ class MEmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $employee = MEmployee::find($id);
+        $employee = Employee::find($id);
         $employee->emp_name = $request->empName;
         $employee->email = $request->email;
-        $employee->sex = $request->sex;
+        $employee->gender = $request->gender;
         $employee->address = $request->address;
         $employee->service_code = $request->serviceCode;
         $employee->save();
-        return redirect('api/m_employee/'.$id);
+        return redirect('employees/'.$id);
     }
 
     /**
@@ -77,8 +77,8 @@ class MEmployeeController extends Controller
      */
     public function destroy($id)
     {
-        $employee = MEmployee::find($id);
+        $employee = Employee::find($id);
         $employee->delete();
-        return redirect('api/m_employee/');
+        return redirect('employees');
     }
 }

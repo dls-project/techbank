@@ -18,7 +18,6 @@ class EmployeesTableSeeder extends Seeder
         //ダミデーターを作成
         for( $i = 1; $i <= 1000; $i++ ) {
             $params = [
-                'id' => $i,
                 'emp_id' => sprintf('%05d', $i),
                 'emp_name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
