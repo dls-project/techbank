@@ -13,7 +13,7 @@ const createStore = () => {
     },
     actions: {
       async getEmployeeList({ commit }) {
-        const res = await axios.get("/api/m_employee")
+        const res = await axios.get("/api/employees")
         commit("setEmployeeList", res)
       }
     }

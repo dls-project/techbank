@@ -95,10 +95,10 @@
         label="性別">
         <b-form-radio-group
           v-model="radioSelected"
-          :options="sex"
+          :options="gender"
           buttons
           button-variant="outline-primary"
-          name="sex" />
+          name="gender" />
       </b-form-group>
       <b-form-group 
         horizontal 
@@ -162,7 +162,7 @@ export default {
 
       //新規作成フォーム
       radioSelected: null,
-      sex: ["男", "女"],
+      gender: ["男", "女"],
       serviceCode: null,
       options: [
         { value: null, text: "-" },
@@ -202,8 +202,7 @@ export default {
 
     // 削除
     destroy() {
-      // axios.delete('/api/m_employee/')
-      alert()
+      // axios.delete('/api/employees/')
     }
   }
 }
