@@ -41,9 +41,6 @@
               variant="primary"
               type="submit"
               @click="login">ログイン</b-button>
-            <b-button 
-              variant="primary" 
-              @click="oauthLogin">passportログイン</b-button>
           </b-form>
         </div>
       </b-col>
@@ -70,33 +67,7 @@ export default {
   //   }
   // },
   methods: {
-    // getHeaders(token) {
-    //   return {
-    //     Authorization: `Bearer ${token}`
-    //   }
-    // },
-    // login() {
-    //     const postData = {
-    //         grant_type: 'password',
-    //         client_id: process.env.PASSPORT_PASSWORD_GRANT_ID,
-    //         client_secret: process.env.PASSPORT_PASSWORD_GRANT_SECRET,
-    //         scope: "*",
-    //         username: this.userForm.username,
-    //         password: this.userForm.password,
-    //     }
-    //     console.log(postData)
-    //     axios.post('http://localhost:8000/oauth/token', postData)
-    //     .then(
-    //         response => {
-    //             //取得したアクセストークンをヘッダーに入れる
-    //             const headers = this.getHeaders(response.data.access_token)
-    //             axios.defaults.headers.common['Authorization'] = headers.Authorization
-    //         },
-    //     )
-    //     .catch(error => {
-    //         alert('ログインに失敗しました')
-    //     })
-    // }
+
     async login() {
       await this.$auth.loginWith("local", {
         data: this.userForm
@@ -105,9 +76,7 @@ export default {
         path: this.$route.query.redirect || "/"
       })
     },
-    oauthLogin() {
-      this.$auth.loginWith("laravel.passport")
-    }
+
   }
 }
 </script>
