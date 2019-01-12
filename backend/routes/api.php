@@ -18,8 +18,8 @@ use Illuminate\Http\Request;
 // });
 
 Route::post('/register', 'AuthController@register');
-Route::post('login', 'AuthController@login');
-Route::get('user', 'AuthController@user');
+Route::post('/login', 'AuthController@login');
+Route::get('/user', 'AuthController@user');
 Route::post('/logout', 'AuthController@logout');
 
 // Route::middleware('auth:api')->group(function () {

@@ -131,7 +131,7 @@ export default {
           label: "社員氏名",
           sortable: true
         },
-        sex: {
+        gender: {
           label: "性別",
           sortable: true
         },

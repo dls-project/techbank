@@ -23,7 +23,7 @@
               label-for="loginInput1">
               <b-form-input 
                 id="loginInput1"
-                v-model="userForm.username"
+                v-model="form.email"
                 type="text"
                 placeholder="ユーザーIDを入力"/>
             </b-form-group>
@@ -33,14 +33,13 @@
               label-for="loginInput2">
               <b-form-input 
                 id="loginInput2"
-                v-model="userForm.password"
+                v-model="form.password"
                 type="password"
                 placeholder="パスワードを入力"/>
             </b-form-group>
             <b-button 
               variant="primary"
-              type="submit"
-              @click="login">ログイン</b-button>
+              type="submit">ログイン</b-button>
           </b-form>
         </div>
       </b-col>
@@ -51,12 +50,12 @@
 <script>
 export default {
   layout: "base",
-  middleware: "guest",
+  middleware: ['guest'],
   components: {},
   data() {
     return {
-      userForm: {
-        username: "",
+      form: {
+        email: "",
         password: ""
       }
     }
@@ -67,16 +66,16 @@ export default {
   //   }
   // },
   methods: {
-
     async login() {
+      console.log(this.$auth)
       await this.$auth.loginWith("local", {
-        data: this.userForm
+        data: this.form
       })
       this.$router.push({
         path: this.$route.query.redirect || "/"
       })
-    },
-
+      console.log(this.form)
+    }
   }
 }
 </script>

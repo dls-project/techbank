@@ -3,7 +3,8 @@ const pkg = require("./package")
 require("dotenv").config()
 
 module.exports = {
-  mode: "spa",
+  mode: "universal",
+
   // srcDir: "./frontend",
   modules: [
     "@nuxtjs/dotenv",
@@ -14,12 +15,13 @@ module.exports = {
     "nuxt-fontawesome"
   ],
   env: {
-    FRONT_API_URL: process.env.FRONT_API_URL,
+    FRONT_API_URL: process.env.API_URL
   },
 
   axios: {
     baseURL: "http://localhost:8000/api",
-    proxy: true
+    credentials: true
+    // proxy: true
   },
 
   plugins: [
@@ -32,7 +34,11 @@ module.exports = {
     strategies: {
       local: {
         endpoints: {
-          login: { url: "login", method: "post", propertyName: "meta.token" },
+          login: {
+            url: "login",
+            method: "post",
+            propertyName: "meta.token"
+          },
           user: { url: "user", method: "get", propertyName: "data" },
           logout: { url: "logout", method: "post" }
         }
@@ -40,7 +46,7 @@ module.exports = {
     }
   },
   proxy: {
-    "/api": "http://localhost:8000/"
+    // "/api": "http://localhost:8000/"
   },
   /*
   ** fontawesome
