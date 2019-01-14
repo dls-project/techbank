@@ -3,7 +3,7 @@ const pkg = require("./package")
 require("dotenv").config()
 
 module.exports = {
-  mode: "universal",
+  mode: "spa",
 
   // srcDir: "./frontend",
   modules: [
@@ -19,8 +19,8 @@ module.exports = {
   },
 
   axios: {
-    baseURL: "http://localhost:8000/api",
-    credentials: true
+    baseURL: "http://localhost:8000/api"
+    // credentials: true
     // proxy: true
   },
 
@@ -40,7 +40,7 @@ module.exports = {
             propertyName: "meta.token"
           },
           user: { url: "user", method: "get", propertyName: "data" },
-          logout: { url: "logout", method: "post" }
+          logout: false
         }
       }
     }
@@ -61,7 +61,7 @@ module.exports = {
   },
 
   router: {
-    // middleware: ['auth']
+    // middleware: ["auth"]
     middleware: ["clearValidationErrors"]
   },
 

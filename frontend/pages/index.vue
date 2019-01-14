@@ -5,7 +5,7 @@
 <script>
 export default {
   components: {},
-  middleware: ["auth"],
+  // middleware: ["auth"],
   data() {
     return {}
   },

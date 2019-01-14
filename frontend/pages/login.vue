@@ -60,21 +60,16 @@ export default {
       }
     }
   },
-  // created() {
-  //   if (this.$auth.loggedIn) {
-  //     this.$router.replace("/")
-  //   }
-  // },
+
   methods: {
     async login() {
-      console.log(this.$auth)
+      console.log(this.$auth.loggedIn)
       await this.$auth.loginWith("local", {
         data: this.form
       })
       this.$router.push({
-        path: this.$route.query.redirect || "/"
+        path: "/"
       })
-      console.log(this.form)
     }
   }
 }
