@@ -108,9 +108,7 @@ export default {
   width: 100%;
   height: calc(100vh - 50px);
 }
-.wrapper > * {
-  /* padding: 10px; */
-}
+
 .left-side {
   order: 0;
   width: 250px;
