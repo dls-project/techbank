@@ -15,7 +15,7 @@
           <template slot="button-content">
             <font-awesome-icon icon="user"/>
           </template>
-          <b-dropdown-item href="#">{{ user.name }}</b-dropdown-item>
+          <b-dropdown-item href="#">{{ this.$auth.loggedIn }}</b-dropdown-item>
           <b-dropdown-item @click="logout">ログアウト</b-dropdown-item>
         </b-dropdown>
       </div>

@@ -5,7 +5,6 @@ require("dotenv").config()
 module.exports = {
   mode: "spa",
 
-  // srcDir: "./frontend",
   modules: [
     "@nuxtjs/dotenv",
     "@nuxtjs/axios",
@@ -39,7 +38,7 @@ module.exports = {
             method: "post",
             propertyName: "meta.token"
           },
-          user: { url: "user", method: "get", propertyName: "data" },
+          user: { url: "user", method: "get", propertyName: false },
           logout: false
         }
       }
