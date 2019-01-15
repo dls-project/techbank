@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserLoginRequest;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\User as UserResource;
 
 class AuthController extends Controller
 {
@@ -27,7 +27,8 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {   
-		return 'q';
+	// 	// TODO can't get user resource 
+	return 'q';
 		// return new UserResource($request->user());
     }
 

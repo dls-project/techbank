@@ -18,16 +18,11 @@ module.exports = {
   },
 
   axios: {
-    baseURL: "http://localhost:8000/api"
-    // credentials: true
-    // proxy: true
+    baseURL: "http://localhost:8000/api",
+    proxy: true
   },
 
-  plugins: [
-    "./plugins/mixins/user.js",
-    "./plugins/mixins/validation.js",
-    "./plugins/axios.js"
-  ],
+  plugins: ["./plugins/mixins/validation.js"],
 
   auth: {
     strategies: {
@@ -39,13 +34,13 @@ module.exports = {
             propertyName: "meta.token"
           },
           user: { url: "user", method: "get", propertyName: false },
-          logout: false
+          logout: { url: "logout", method: "post" }
         }
       }
     }
   },
   proxy: {
-    // "/api": "http://localhost:8000/"
+    "/api": "http://localhost:8000/"
   },
   /*
   ** fontawesome
@@ -60,8 +55,7 @@ module.exports = {
   },
 
   router: {
-    // middleware: ["auth"]
-    middleware: ["clearValidationErrors"]
+    middleware: ["auth"]
   },
 
   /*
