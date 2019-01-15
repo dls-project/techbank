@@ -7,7 +7,7 @@
       <a 
         id="logo" 
         href="/">TechBank</a>
-      <div class="user-menu">
+      <div v-if="$auth.loggedIn" class="user-menu">
         <b-dropdown 
           variant="success" 
           right 
@@ -15,7 +15,7 @@
           <template slot="button-content">
             <font-awesome-icon icon="user"/>
           </template>
-          <b-dropdown-item href="#">{{ this.$auth.loggedIn }}</b-dropdown-item>
+          <b-dropdown-item href="#">{{ this.$auth.user.name}}</b-dropdown-item>
           <b-dropdown-item @click="logout">ログアウト</b-dropdown-item>
         </b-dropdown>
       </div>
@@ -38,7 +38,6 @@
 import OrgMenu from "@/components/organisms/OrgMenu"
 import { mixin as clickaway } from "vue-clickaway"
 export default {
-  midleware: ['auth'],
   components: {
     OrgMenu
   },

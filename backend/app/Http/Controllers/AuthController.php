@@ -27,9 +27,7 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {   
-	// 	// TODO can't get user resource 
-	return 'q';
-		// return new UserResource($request->user());
+		return new UserResource($request->user());
     }
 
     public function logout()
