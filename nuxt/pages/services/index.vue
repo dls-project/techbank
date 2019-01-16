@@ -1,10 +1,13 @@
 <template>
-  <div/>
+  <DataTable/>
 </template>
 
 <script>
+import DataTable from '@/components/data-table'
 export default {
-  components: {},
+  components: {
+    DataTable
+  },
   data() {
     return {}
   },

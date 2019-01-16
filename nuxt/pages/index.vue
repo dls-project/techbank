@@ -1,13 +1,5 @@
 <template>
-  <section>
-    {{ $auth.loggedIn }}
-    {{ $auth.user }}
-    {{ $auth.user.name }}
-    {{ $auth.user.email }}
-    <button @click="logout">
-      logout
-    </button>
-  </section>
+  <section/>
 </template>
 
 <script>
@@ -16,11 +8,7 @@ export default {
   data() {
     return {}
   },
-  methods: {
-    logout() {
-      this.$auth.logout()
-    }
-  }
+  methods: {}
 }
 </script>
 
