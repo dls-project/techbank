@@ -15,7 +15,7 @@
           <template slot="button-content">
             <font-awesome-icon icon="user"/>
           </template>
-          <b-dropdown-item href="#">{{ this.$auth.user.email }}</b-dropdown-item>
+          <b-dropdown-item href="#">{{ this.$auth.user.name }}</b-dropdown-item>
           <b-dropdown-item @click="logout">ログアウト</b-dropdown-item>
         </b-dropdown>
       </div>
@@ -51,7 +51,7 @@ export default {
   methods: {
     logout() {
       this.$auth.logout()
-      // this.$router.replace('/login')
+      this.$router.replace('/login')
     },
     away(e) {
       let element = document.getElementById('btn-menu')

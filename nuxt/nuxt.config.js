@@ -24,7 +24,7 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: [],
+  css: [ '@/assets/style.css' ],
 
   /*
   ** Plugins to load before mounting the App
@@ -54,15 +54,29 @@ module.exports = {
     // https://auth.nuxtjs.org/
     '@nuxtjs/auth',
     // Doc: https://bootstrap-vue.js.org/docs/s
-    'bootstrap-vue/nuxt'
+    'bootstrap-vue/nuxt',
+    "nuxt-fontawesome"
   ],
+
   /*
   ** Axios module configuration
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    baseURL: 'http://localhost:8000/api'
+    baseURL: 'http://localhost:8000/api',
   },
+
+    /*
+  ** fontawesome
+  */
+ fontawesome: {
+  imports: [
+    {
+      set: "@fortawesome/free-solid-svg-icons",
+      icons: ["fas"]
+    }
+  ]
+},
 
   router: {
     middleware: ['auth']
@@ -81,7 +95,10 @@ module.exports = {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          exclude: /(node_modules)/,
+          options: {
+            fix: true
+          }
         })
       }
     }
