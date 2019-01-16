@@ -47,13 +47,16 @@ export default {
       items: [],
     }
   },
+  mounted() {
+    this.index()
+  },
   methods: {
     // -----API-----
     // 全件取得
-    index() {
-      this.$store.dispatch("getEmployeeList").then(() => {
-        this.items = this.$store.state.employeeList.data
-      })
+    async index() {
+        let res = await this.$axios.get('http://localhost:8000/api/employees')
+        this.items = res.data
+      }
     },
 
     // 新規作成
@@ -67,10 +70,11 @@ export default {
     },
 
     // 削除
-    destroy() {
-      // axios.delete('/api/employees/')
+    async destroy(id) {
+      await this.$axios.delete(
+        `http://localhost:8000/api/employees/$id`
+      )
     }
-  }
 }
 </script>
 

@@ -20,19 +20,19 @@
       >
         <template 
           slot="action" 
-          slot-scope="data">
+          slot-scope="row">
           <div class="action">
             <b-button-group size="sm">
               <!-- <b-button variant="outline-success"><font-awesome-icon icon="file" class="mr-1"/>詳細</b-button> -->
-              <b-button variant="outline-success"><font-awesome-icon 
+              <b-button
+                variant="outline-success"><font-awesome-icon 
                 icon="edit" 
-                class="mr-1"/>編集</b-button>
+                class="mr-1"/></b-button>
               <b-button 
-                v-b-modal.delete 
                 variant="outline-success" 
-                @click="destroy"><font-awesome-icon 
+                @click="destroy(row.item.id)"><font-awesome-icon 
                   icon="trash" 
-                  class="mr-1"/>削除</b-button>
+                  class="mr-1"/></b-button>
             </b-button-group>
           </div>
         </template>
@@ -93,9 +93,27 @@ export default {
       this.totalRows = filteredItems.length
       this.currentPage = 1
     },
+
+    destroy(id) {
+      alert(id)
+    }
   }
 }
 </script>
 
-<style scoped>
+<style >
+.table {
+  font-size: 0.9rem;
+}
+.custom-tr:hover .action {
+  visibility: visible;
+}
+.td-action {
+  /* width: 150px; */
+  /* padding: 0 !important; */
+}
+.td-action button {
+  /* border: none;
+  border-radius: 0px !important; */
+}
 </style>
