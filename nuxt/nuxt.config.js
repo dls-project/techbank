@@ -40,7 +40,7 @@ module.exports = {
             propertyName: 'meta.token'
           },
           user: { url: 'user', method: 'get', propertyName: 'data' },
-          logout: { url: 'logout', method: 'post' }
+          logout: false
         }
       }
     }
