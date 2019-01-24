@@ -90,3 +90,31 @@ DB の migrate をする。
 ```sh
 $ php artisan migrate:refresh --seed
 ```
+
+### フロントエンド設定
+
+nuxt ディレクトリで初回パッケージインストール
+
+```
+$ cd /workingdir/techbank/nuxt
+$ npm install
+```
+
+### localhost 立ち上げ
+
+1. XAMPP の MySQL を起動する
+2. backend ディレクトリで Laravel を起動する
+
+```sh
+$ cd backend
+$ php artisan serve
+```
+
+3. nuxt ディレクトリで nuxt を起動する
+
+```sh
+$ cd nuxt
+$ npm run dev
+```
+
+4. ブラウザで http://localhost:3000 を表示する
