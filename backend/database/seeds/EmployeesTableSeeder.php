@@ -22,8 +22,9 @@ class EmployeesTableSeeder extends Seeder
                 'emp_name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
                 'gender' => $faker->randomElement( $array = ['男', '女']),
-                'service_code' => $faker->randomDigit(),
+                'route' => $faker->city . '線',
                 'station' => $faker->city . '駅',
+                'service_code' => $faker->randomDigit(),
                 'created_at' => Carbon::today(),
                 'updated_at' => Carbon::today()
             ];

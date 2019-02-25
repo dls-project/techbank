@@ -19,9 +19,14 @@ class ChangeColumnEmployeesTable extends Migration
             $table->string('address', 100)->comment('最寄り駅')->change();
         });
 
-        //address -> station
+        // address -> station
         Schema::table('employees', function (Blueprint $table) {
             $table->renameColumn('address', 'station');
+        });
+
+        // route追加
+        Schema::table('employees', function (Blueprint $table) {
+            $table->string('route', 100)->after('gender')->comment('路線');
         });
     }
 
@@ -32,6 +37,10 @@ class ChangeColumnEmployeesTable extends Migration
      */
     public function down()
     {
+        Schema::table('employees', function (Blueprint $table) {
+            $table->dropColumn('route');
+        });
+
         Schema::table('employees', function (Blueprint $table) {
             $table->renameColumn('station', 'address');
         });
