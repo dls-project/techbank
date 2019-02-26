@@ -16,14 +16,15 @@ class EmployeesTableSeeder extends Seeder
         $faker = Faker::create('ja_JP');
         DB::table('employees')->truncate();
         //ダミデーターを作成
-        for( $i = 1; $i <= 1000; $i++ ) {
+        for( $i = 1; $i <= 500; $i++ ) {
             $params = [
                 'emp_id' => sprintf('%05d', $i),
                 'emp_name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
                 'gender' => $faker->randomElement( $array = ['男', '女']),
+                'route' => $faker->city . '線',
+                'station' => $faker->city . '駅',
                 'service_code' => $faker->randomDigit(),
-                'address' => $faker->address,
                 'created_at' => Carbon::today(),
                 'updated_at' => Carbon::today()
             ];
